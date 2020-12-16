@@ -91,6 +91,10 @@ class KNearestNeighbor(object):
 
         Input / Output: Same as compute_distances_two_loops
         """
+
+        def computeL2(x, y):
+            return np.sqrt(np.sum((x - y) ** 2))
+
         num_test = X.shape[0]
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
@@ -103,7 +107,8 @@ class KNearestNeighbor(object):
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            pass
+            dists[i, :] = np.sqrt(np.sum(np.square(X[i] - self.X_train), axis = 1))
+
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
@@ -175,7 +180,7 @@ class KNearestNeighbor(object):
             # Now that you have found the labels of the k nearest neighbors, you    #
             # need to find the most common label in the list closest_y of labels.   #
             # Store this label in y_pred[i]. Break ties by choosing the smaller     #
-            # label.                                                                #
+            # label.                                                                w#
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
